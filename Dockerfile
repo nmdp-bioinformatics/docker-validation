@@ -8,7 +8,7 @@ RUN PERL_MM_USE_DEFAULT=1 apt-get update -q \
     && dpkg --install /ngs-tools-1.8.1.deb && rm /ngs-tools-1.8.1.deb \
     && cpan Getopt::Long Data::Dumper LWP::UserAgent Test::More HTML::TreeBuilder \
     && export PATH=/opt/ngs-tools/bin:$PATH \
-    && cd /opt && git clone https://github.com/nmdp-bioinformatics/pipeline \cd 
+    && cd /opt && git clone https://github.com/nmdp-bioinformatics/pipeline \
     && cd /opt/pipeline/validation && perl Makefile.PL \
     && make && make test && make install \
     && apt-get purge -qy build-essentials git curl \
