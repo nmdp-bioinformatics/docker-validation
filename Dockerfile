@@ -11,10 +11,13 @@ RUN PERL_MM_USE_DEFAULT=1 apt-get update -q \
     && cd /opt && git clone https://github.com/nmdp-bioinformatics/pipeline \
     && cd /opt/pipeline/validation && perl Makefile.PL \
     && make && make test && make install \
-    && cd /opt && wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.30+-x64-linux.tar.gz \
-    && tar -xzvf ncbi-blast-2.2.30+-x64-linux.tar.gz && export PATH=/opt/ncbi-blast-2.2.30+/bin:$PATH \
-    && rm ncbi-blast-2.2.30+-x64-linux.tar.gz && mkdir /opt/imgt-db \
+    && git clone https://github.com/Homebrew/linuxbrew.git /opt/linuxbrew \
+    && export PATH=/opt/linuxbrew/bin:$PATH \
+    && brew tap homebrew/science \
+    && brew install blast \
+    && rm -rf .git Library \
     && ngs-imgt-db -o /opt/imgt-db -c -r -f \
+
 
 ENV PATH /opt/ngs-tools/bin:$PATH
 
