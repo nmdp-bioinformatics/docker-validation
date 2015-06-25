@@ -12,4 +12,6 @@ RUN PERL_MM_USE_DEFAULT=1 apt-get update -q \
     && cd /opt/pipeline/validation && perl Makefile.PL \
     && make && make test && make install 
 
+ENV PATH /opt/ngs-tools/bin:$PATH
+
 CMD ["/bin/bash"]
